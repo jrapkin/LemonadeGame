@@ -11,13 +11,7 @@ namespace LemonadeStand_3DayStarter
         private double money;
 
         // property - TBD
-        public double Money
-        {
-            get
-            {
-                return money;
-            }
-        }
+        public double Money {get{return money;}}
 
         public Wallet()
         {
