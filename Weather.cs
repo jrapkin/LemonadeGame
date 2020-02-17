@@ -12,46 +12,42 @@ namespace LemonadeStand_3DayStarter
 		public string condition;
 		public int temperature;
 		private List<string> weatherConditions;
-		Random randomRoll;
 
-
-		public Weather(Random passedRandom)
+		public Weather(Random random)
 		{
 
 			weatherConditions = new List<string>() { "sunny", "overcast", "foggy", "rainy", "stormy" };
-			randomRoll = passedRandom;
-			GenerateRandomCondition();
-			temperature = GenerateRandomTemperature();
-
+			GenerateRandomCondition(random);
+			temperature = GenerateRandomTemperature(random);
 		}
 
 		//methods
-		private void GenerateRandomCondition()
+		private void GenerateRandomCondition(Random passedRandom)
 		{
-			int generatedCondition = randomRoll.Next(0, weatherConditions.Count);
+			int generatedCondition = passedRandom.Next(0, weatherConditions.Count);
 			condition = weatherConditions[generatedCondition];
 
 		}
-		private int GenerateRandomTemperature()
+		private int GenerateRandomTemperature(Random passedRandom)
 		{
 			int randomTemperature = 0;
 			switch (condition)
 			{
 				case "sunny":
-					randomTemperature = randomRoll.Next(75, 111);
+					randomTemperature = passedRandom.Next(80, 111);
 					break;
 
 				case "overcast":
-					randomTemperature = randomRoll.Next(60, 76);
+					randomTemperature = passedRandom.Next(66, 80);
 					break;
 				case "foggy":
-					randomTemperature = randomRoll.Next(55, 66);
+					randomTemperature = passedRandom.Next(55, 66);
 					break;
 				case "rainy":
-					randomTemperature = randomRoll.Next(50, 70);
+					randomTemperature = passedRandom.Next(50, 70);
 					break;
 				case "stormy":
-					randomTemperature = randomRoll.Next(65, 76);
+					randomTemperature = passedRandom.Next(65, 76);
 					break;
 				default:
 					break;
@@ -61,11 +57,6 @@ namespace LemonadeStand_3DayStarter
 		}
 		
 
-		//can i do this from the static class
-/*		public void DisplayTheDailyWeather()
-		{
-			Console.WriteLine($"It is {temperature} degrees and {condition} today.");
-		}*/
 
 
 	}

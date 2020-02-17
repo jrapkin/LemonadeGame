@@ -31,9 +31,17 @@ namespace LemonadeStand_3DayStarter
 			//welcome user to the game
 			UserInterface.DisplayGameModeOptions();
 			SetGameMode();
-			SetPlayerType();
-			weather = new Weather(random);
-			UserInterface.DisplayWeather(days[0].theDay, weather.condition, weather.temperature);
+
+			foreach (Customer customer in days[0].customers)
+			{
+				for (int i = 0; i < days[0].customers.Count; i++)
+				{
+					Console.WriteLine(days[0].customers[i].name);
+				}
+
+			}
+		
+
 			//new players get $20 to start
 
 			//set actual weather for the day
@@ -92,7 +100,7 @@ namespace LemonadeStand_3DayStarter
 			do
 			{
 				string playerType = UserInterface.PlayerInput();
-
+		
 				if (playerType == "with the computer" || playerType == "1")
 				{
 
