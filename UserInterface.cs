@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {
-    static class UserInterface
-    {
+	static class UserInterface
+	{
 		public static void WelcomeMessage()
 		{
 
@@ -35,7 +35,7 @@ namespace LemonadeStand_3DayStarter
 			Console.WriteLine("You have selected Multiplayer Mode. You can press 1 to play with the computer, or press two to play with a friend.");
 
 		}
-		
+
 		public static void CheckForNewGame()
 		{
 			Console.WriteLine("Would you like to start a new game? Press 1 to start a new game. \n Press 2 to quit the game");
@@ -46,33 +46,36 @@ namespace LemonadeStand_3DayStarter
 		}
 
 		public static string PlayerInput()
-        {
-            string userInput = Console.ReadLine();
+		{
+			string userInput = Console.ReadLine();
 
-            return userInput;
-        }
+			return userInput;
+		}
 
 		public static void DisplayInvalidSelectionMessage()
 		{
 			Console.WriteLine("Please enter a valid selection.");
 		}
 
-        public static int GetNumberOfItems(string itemsToGet)
-        {
-            bool userInputIsAnInteger = false;
-            int quantityOfItem = -1;
+		public static int GetNumberOfItems(string itemsToGet)
+		{
+			bool userInputIsAnInteger = false;
+			int quantityOfItem = -1;
 
-            while (!userInputIsAnInteger || quantityOfItem < 0)
-            {
-                Console.WriteLine("How many " + itemsToGet + " would you like to buy?");
-                Console.WriteLine("Please enter a positive integer (or 0 to cancel):");
+			while (!userInputIsAnInteger || quantityOfItem < 0)
+			{
+				Console.WriteLine("How many " + itemsToGet + " would you like to buy?");
+				Console.WriteLine("Please enter a positive integer (or 0 to cancel):");
 
-                userInputIsAnInteger = Int32.TryParse(Console.ReadLine(), out quantityOfItem);
-            }
+				userInputIsAnInteger = Int32.TryParse(Console.ReadLine(), out quantityOfItem);
+			}
 
-            return quantityOfItem;
-        }
+			return quantityOfItem;
+		}
 
-
+		public static void DisplayWeather(string day,string condition, int temperatureToDisplay)
+		{
+			Console.WriteLine($"Today is {day}. Today it will be {temperatureToDisplay} degrees and {condition}.");
+		}
     }
 }

@@ -11,13 +11,9 @@ namespace LemonadeStand_3DayStarter
         static void Main(string[] args)
         {
             Game game = new Game();
-
-            Weather weather = new Weather();
+            game.RunGame();
             
-            weather.SetWeatherCondition(weather.GenerateRandomCondition());
 
-
-            Console.WriteLine(weather.condition);
             Console.ReadLine();
 /*            bool newGame = game.CheckForNewGame();
             if (newGame == true)

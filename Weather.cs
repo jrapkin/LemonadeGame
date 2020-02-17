@@ -12,61 +12,61 @@ namespace LemonadeStand_3DayStarter
 		public string condition;
 		public int temperature;
 		private List<string> weatherConditions;
-		private Random randomTemperatureGenerator;
-		private Random randomConditionSelector;
+		Random randomRoll;
 
-		public Weather()
+
+		public Weather(Random passedRandom)
 		{
-			weatherConditions = new List<string>() { "Sunny", "Overcast", "foggy", "rainy", "stormy" };
-			randomConditionSelector = new Random();
-			randomTemperatureGenerator = new Random();
+
+			weatherConditions = new List<string>() { "sunny", "overcast", "foggy", "rainy", "stormy" };
+			randomRoll = passedRandom;
+			GenerateRandomCondition();
+			temperature = GenerateRandomTemperature();
+
 		}
 
 		//methods
-		public void GenerateRandomTemperature()
+		private void GenerateRandomCondition()
 		{
-			temperature = randomTemperatureGenerator.Next(50, 110);
-		}
-		public int GenerateRandomCondition()
-		{
-			int generatedCondition = randomConditionSelector.Next(0, 5);
-
-			return generatedCondition;
-		}
-		public void SetWeatherCondition(int randomRoll)
-		{
-			if (randomRoll == 0)
-			{
-				condition = weatherConditions[0];
-			}
-			else if (randomRoll == 1)
-			{
-				condition = weatherConditions[1];
-
-			}
-			else if (randomRoll == 2)
-			{
-				condition = weatherConditions[2];
-
-			}
-			else if (randomRoll == 3)
-			{
-				condition = weatherConditions[3];
-
-			}
-			else if (randomRoll == 4)
-			{
-				condition = weatherConditions[4];
-
-			}
+			int generatedCondition = randomRoll.Next(0, weatherConditions.Count);
+			condition = weatherConditions[generatedCondition];
 
 		}
+		private int GenerateRandomTemperature()
+		{
+			int randomTemperature = 0;
+			switch (condition)
+			{
+				case "sunny":
+					randomTemperature = randomRoll.Next(75, 111);
+					break;
+
+				case "overcast":
+					randomTemperature = randomRoll.Next(60, 76);
+					break;
+				case "foggy":
+					randomTemperature = randomRoll.Next(55, 66);
+					break;
+				case "rainy":
+					randomTemperature = randomRoll.Next(50, 70);
+					break;
+				case "stormy":
+					randomTemperature = randomRoll.Next(65, 76);
+					break;
+				default:
+					break;
+			}
+
+			return randomTemperature;
+		}
+		
 
 		//can i do this from the static class
-		public void DisplayTheTemperature()
+/*		public void DisplayTheDailyWeather()
 		{
-			Console.WriteLine($"The temperature for today is {temperature}");
-		}
+			Console.WriteLine($"It is {temperature} degrees and {condition} today.");
+		}*/
+
 
 	}
 }

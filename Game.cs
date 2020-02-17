@@ -11,27 +11,36 @@ namespace LemonadeStand_3DayStarter
 		//Member Variables
 		Player playerOne;
 		Player playerTwo;
+		public Weather weather;
+		public Random random;
+		public List<Day> days;
 		//Constructor
 		public Game()
-		{
+		{	
+			random = new Random();
 			UserInterface.WelcomeMessage();
+			days = new List<Day>() { new Day(random, "Monday"), new Day(random, "Tuesday"), new Day(random, "Wednsday"), new Day(random, "Thursday"), new Day(random, "Friday"), new Day(random, "Saturday"), new Day(random, "Sunday") };
+
+
 		}
 		//Member Methods
 		//Main Method
 		public void RunGame()
 		{
-
+			
 			//welcome user to the game
 			UserInterface.DisplayGameModeOptions();
 			SetGameMode();
 			SetPlayerType();
-
-
-
+			weather = new Weather(random);
+			UserInterface.DisplayWeather(days[0].theDay, weather.condition, weather.temperature);
 			//new players get $20 to start
-			//display the weather for the day
 
 			//set actual weather for the day
+
+
+			//display the weather for the day	
+
 
 			//player gets to buy inventory
 			//what do they want to buy?
@@ -52,7 +61,7 @@ namespace LemonadeStand_3DayStarter
 			//track how much made over the week?
 
 		}
-		public void SetGameMode()
+		private void SetGameMode()
 		{
 			bool gameModeCheck = false;
 			do
@@ -76,8 +85,8 @@ namespace LemonadeStand_3DayStarter
 			}
 			while (gameModeCheck == false);
 		}
-
-		public void SetPlayerType()
+		
+		private void SetPlayerType()
 		{
 			bool playerTypeCheck = false;
 			do

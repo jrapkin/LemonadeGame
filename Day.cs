@@ -11,12 +11,15 @@ namespace LemonadeStand_3DayStarter
 		//member variables
 		public List<Customer> customers;
 		public Weather weather;
+		public string theDay;
+
 
 		//constructor
-		public Day()
+		public Day(Random random, string day)
 		{
-			weather = new Weather();
-			weather.GenerateRandomTemperature();
+			weather = new Weather(random);
+			theDay = day;
+			
 		}
 
 		//Member method
