@@ -8,5 +8,6 @@ namespace LemonadeStand_3DayStarter
 {
 	class Customer
 	{
+
 	}
 }
