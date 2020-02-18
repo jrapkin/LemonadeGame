@@ -24,6 +24,7 @@ namespace LemonadeStand_3DayStarter
         }
 
         // member methods (CAN DO)
+        
         public void SellLemons(Player player)
         {
             int lemonsToPurchase = UserInterface.GetNumberOfItems("lemons");
@@ -37,7 +38,7 @@ namespace LemonadeStand_3DayStarter
 
         public void SellSugarCubes(Player player)
         {
-            int sugarToPurchase = UserInterface.GetNumberOfItems("sugar");
+            int sugarToPurchase = UserInterface.GetNumberOfItems("sugar cubes");
             double transactionAmount = CalculateTransactionAmount(sugarToPurchase, pricePerSugarCube);
             if(player.wallet.Money >= transactionAmount)
             {

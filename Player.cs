@@ -24,52 +24,40 @@ namespace LemonadeStand_3DayStarter
 
         // member methods (CAN DO)
 
-       
-        public void BuyItems()
+
+        public void SetLemondadeRecipe(string itemToAddToRecipe)
         {
-			string userInput = UserInterface.TakePlayerInput().ToLower();
+            
+            if (itemToAddToRecipe == "1" || itemToAddToRecipe == "lemons")
+            {
+                UserInterface.PromptForNumberOfItems("lemons");
 
-			//user picks item from list
-			do
-			{
-				bool validInput = false;
+                inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.lemons);
+            }
+            else if (itemToAddToRecipe == "2" || itemToAddToRecipe == "sugar cubes")
+            {
+                UserInterface.PromptForNumberOfItems("sugar cubes");
 
-				switch (userInput)
-				{
-					case "1":
-					case "lemon":
+                inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.sugarCubes);
 
-						int numberOfLemons = UserInterface.GetNumberOfItems("lemons");
-						inventory.AddLemonsToInventory(numberOfLemons);
-						validInput = true;
-						break;
+            }
+            else if (itemToAddToRecipe == "3" || itemToAddToRecipe == "ice cubes")
+            {
+                UserInterface.PromptForNumberOfItems("ice cubes");
 
-					case "2":
-					case "sugar cubes":
-						int numberOfSugarCubes = UserInterface.GetNumberOfItems("sugar cubes");
-						inventory.AddLemonsToInventory(numberOfSugarCubes);
-						validInput = true;
-						break;
-					case "3":
-					case "ice cubes":
-						int numberOfIceCubes = UserInterface.GetNumberOfItems("ice cubes");
-						inventory.AddLemonsToInventory(numberOfIceCubes);
-						validInput = true;
-						break;
-					case "4":
-					case "cups":
-						int numberOfCups = UserInterface.GetNumberOfItems("cups");
-						inventory.AddLemonsToInventory(numberOfCups);
-						validInput = true;
-						break;
+                inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.iceCubes);
+            }
+            else if (itemToAddToRecipe == "4" || itemToAddToRecipe == "cups")
+            {
+                UserInterface.PromptForNumberOfItems("cups");
 
+                inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.cups);
 
-					default:
-						UserInterface.DisplayInvalidSelectionMessage();
-						break;
-						
-				}
-			} while (false);
-		}
+            }
+            else
+            {
+                UserInterface.DisplayInvalidSelectionMessage();
+            }
+        }
     }
 }

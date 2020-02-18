@@ -11,9 +11,10 @@ namespace LemonadeStand_3DayStarter
 		//Member Variables
 		Player playerOne;
 		Player playerTwo;
-		public Weather weather;
 		public Random random;
 		public List<Day> days;
+		Store theStore;
+
 
 		//Constructor
 		public Game()
@@ -21,7 +22,7 @@ namespace LemonadeStand_3DayStarter
 			random = new Random();
 			UserInterface.WelcomeMessage();
 			days = new List<Day>() { new Day(random, "Monday"), new Day(random, "Tuesday"), new Day(random, "Wednsday"), new Day(random, "Thursday"), new Day(random, "Friday"), new Day(random, "Saturday"), new Day(random, "Sunday") };
-
+			theStore = new Store();
 
 		}
 		//Member Methods
@@ -35,26 +36,65 @@ namespace LemonadeStand_3DayStarter
 			 
 			/*for (int i = 0; i < days.Count; i++)
 			{*/
-				//new players get $20 to start
-				UserInterface.DisplayMoneyHeld(playerOne.wallet.Money);
 			    //display the weather for the day	
 				//UserInterface.DisplayWeather(days[i].theDay, days[i].weather.condition, days[i].weather.temperature);
 				//player gets to buy inventory
 				UserInterface.StorePurchaseMessage();
-				//what do they want to buy?
+
+			bool playerWantsToBuy = true;
+			
+			do
+			{
+				UserInterface.DisplayMoneyHeld(playerOne.wallet.Money);
+				UserInterface.DisplayCurrentInventory(playerOne.inventory.lemons.Count, playerOne.inventory.sugarCubes.Count, playerOne.inventory.iceCubes.Count, playerOne.inventory.cups.Count);
 				UserInterface.DisplayItemList();
-				playerOne.BuyItems();
+				//is deciding what they want to buy and also how much they want and then performing the transaction
+				//figure out how to break this up
+				WhatPlayerWantsToBuy();
+				UserInterface.DoYouWantToContinueToBuy();
+				string playerBuyingItems = UserInterface.TakePlayerInput().ToLower();
+				if (playerBuyingItems == "no") 
+				{
+					Console.Clear();
+					playerWantsToBuy = false;
+				}
+				else if (playerBuyingItems == "yes")
+				{
+					Console.Clear();
+					continue;
+				}
+				else
+				{
+					Console.Clear();
+					UserInterface.DisplayInvalidSelectionMessage();
+				}
+			} while (playerWantsToBuy);
 
-					//how much do they want to buy?	
-					//} 
-
-
-
-
-					//complete transaction (remove $$$ from their wallet)
-
-					//create their recipie for the lemonade
-					//how many lemons/cup
+			//create their recipie for the lemonade
+			bool playerSettingRecipe = true;
+			UserInterface.PromptUserForDesiredRecipe();
+			do
+			{
+				UserInterface.DisplayCurrentInventory(playerOne.inventory.lemons.Count, playerOne.inventory.sugarCubes.Count, playerOne.inventory.iceCubes.Count, playerOne.inventory.cups.Count);
+				UserInterface.DisplayItemList();			
+				//how many lemons/cup
+				playerOne.SetLemondadeRecipe(UserInterface.TakePlayerInput().ToLower());
+				UserInterface.DoYouWantToContinueToSetRecipe();
+				string input = UserInterface.TakePlayerInput().ToLower();
+				if (input =="no")
+				{
+					 playerSettingRecipe = false;
+				}
+				else if(input == "yes")
+				{
+					Console.Clear();
+					continue;
+				}
+				else
+				{ UserInterface.DisplayInvalidSelectionMessage();
+				}
+			} while (playerSettingRecipe);	
+		
 					//how much sugar/cup
 					//how many ice cubes
 					//price per cup
@@ -69,6 +109,7 @@ namespace LemonadeStand_3DayStarter
 			}
 		private void SetGameMode()
 		{
+			
 			bool gameModeCheck = false;
 			do
 			{
@@ -154,6 +195,41 @@ namespace LemonadeStand_3DayStarter
 			}
 			while (newGameCheck == false);
 			return newGameCheck;
+		}
+		private bool WhatPlayerWantsToBuy()
+		{
+			string userInput = UserInterface.TakePlayerInput().ToLower();
+			bool validInput = false;
+			//user picks item from list
+			while (validInput == false) 
+			{
+
+				switch (userInput)
+				{
+					case "1":
+					case "lemons":
+						theStore.SellLemons(playerOne);
+						return validInput = true;
+
+					case "2":
+					case "sugar cubes":
+						theStore.SellSugarCubes(playerOne);
+						return validInput = true;
+					case "3":
+					case "ice cubes":
+						theStore.SellIceCubes(playerOne);
+						return validInput = true;
+					case "4":
+					case "cups":
+						theStore.SellCups(playerOne);
+						return validInput = true;
+
+					default:
+						UserInterface.DisplayInvalidSelectionMessage();
+						return WhatPlayerWantsToBuy();
+				}
+			}
+			return validInput;
 		}
 
 	}
