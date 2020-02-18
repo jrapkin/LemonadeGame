@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {
-    public abstract class Player
+    public class Player
     {
         // member variables (HAS A)
         public Inventory inventory;
@@ -23,5 +23,53 @@ namespace LemonadeStand_3DayStarter
         }
 
         // member methods (CAN DO)
+
+       
+        public void BuyItems()
+        {
+			string userInput = UserInterface.TakePlayerInput().ToLower();
+
+			//user picks item from list
+			do
+			{
+				bool validInput = false;
+
+				switch (userInput)
+				{
+					case "1":
+					case "lemon":
+
+						int numberOfLemons = UserInterface.GetNumberOfItems("lemons");
+						inventory.AddLemonsToInventory(numberOfLemons);
+						validInput = true;
+						break;
+
+					case "2":
+					case "sugar cubes":
+						int numberOfSugarCubes = UserInterface.GetNumberOfItems("sugar cubes");
+						inventory.AddLemonsToInventory(numberOfSugarCubes);
+						validInput = true;
+						break;
+					case "3":
+					case "ice cubes":
+						int numberOfIceCubes = UserInterface.GetNumberOfItems("ice cubes");
+						inventory.AddLemonsToInventory(numberOfIceCubes);
+						validInput = true;
+						break;
+					case "4":
+					case "cups":
+						int numberOfCups = UserInterface.GetNumberOfItems("cups");
+						inventory.AddLemonsToInventory(numberOfCups);
+						validInput = true;
+						break;
+
+
+					default:
+						UserInterface.DisplayInvalidSelectionMessage();
+						break;
+						
+				}
+			} while (false);
+		}
     }
 }

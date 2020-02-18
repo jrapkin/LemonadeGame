@@ -36,22 +36,22 @@ namespace LemonadeStand_3DayStarter
 			}
 			else if (weather.condition == "overcast" && (weather.temperature >= 66 || weather.temperature < 79))
 			{
-				numberOfCustomersToCreate = rng.Next(1-10);
+				numberOfCustomersToCreate = rng.Next(1, 10);
 			}
 			else if (weather.condition == "foggy" && (weather.temperature >= 55 || weather.temperature < 65))
 			{
-				numberOfCustomersToCreate = rng.Next(1 - 8);
+				numberOfCustomersToCreate = rng.Next(1,8);
 			}
 			else if (weather.condition == "rainy" && (weather.temperature >= 50 || weather.temperature < 79))
 			{
-				numberOfCustomersToCreate = rng.Next(1 - 5);
+				numberOfCustomersToCreate = rng.Next(1,5);
 			}
 			else if (weather.condition == "stormy" && (weather.temperature >= 65 || weather.temperature < 75))
 			{
 				numberOfCustomersToCreate = 0;
 			}
 			return numberOfCustomersToCreate;
-		}
+		}		
 		private void CreateListOfCustomers(Random random, int numberOfCustomers)
 		{
 			for (int i = 0; i < numberOfCustomers; i++)

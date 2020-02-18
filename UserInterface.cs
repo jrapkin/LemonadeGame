@@ -35,6 +35,10 @@ namespace LemonadeStand_3DayStarter
 			Console.WriteLine("You have selected Multiplayer Mode. You can press 1 to play with the computer, or press two to play with a friend.");
 
 		}
+		public static void DisplayMoneyHeld(double playerMoney)
+		{
+			Console.WriteLine($"You currently have ${playerMoney} in your wallet.");
+		}
 
 		public static void CheckForNewGame()
 		{
@@ -45,7 +49,7 @@ namespace LemonadeStand_3DayStarter
 			Console.WriteLine("It's been fun!\n Play again soon.");
 		}
 
-		public static string PlayerInput()
+		public static string TakePlayerInput()
 		{
 			string userInput = Console.ReadLine();
 
@@ -57,6 +61,14 @@ namespace LemonadeStand_3DayStarter
 			Console.WriteLine("Please enter a valid selection.");
 		}
 
+		public static void StorePurchaseMessage()
+		{
+			Console.WriteLine("Welcome to the store. You can buy anything you'd like... as long as you can show me the money! \nWhat items would you like to buy?\n");
+		}
+		public static void DisplayItemList()
+		{
+			Console.WriteLine("1: Lemon\n\n2: Sugar Cubes\n\n3:Ice Cubes\n\n4:Cups");
+		}
 		public static int GetNumberOfItems(string itemsToGet)
 		{
 			bool userInputIsAnInteger = false;

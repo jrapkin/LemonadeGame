@@ -14,6 +14,7 @@ namespace LemonadeStand_3DayStarter
 		public Weather weather;
 		public Random random;
 		public List<Day> days;
+
 		//Constructor
 		public Game()
 		{	
@@ -31,59 +32,57 @@ namespace LemonadeStand_3DayStarter
 			//welcome user to the game
 			UserInterface.DisplayGameModeOptions();
 			SetGameMode();
+			 
+			/*for (int i = 0; i < days.Count; i++)
+			{*/
+				//new players get $20 to start
+				UserInterface.DisplayMoneyHeld(playerOne.wallet.Money);
+			    //display the weather for the day	
+				//UserInterface.DisplayWeather(days[i].theDay, days[i].weather.condition, days[i].weather.temperature);
+				//player gets to buy inventory
+				UserInterface.StorePurchaseMessage();
+				//what do they want to buy?
+				UserInterface.DisplayItemList();
+				playerOne.BuyItems();
 
-			foreach (Customer customer in days[0].customers)
-			{
-				for (int i = 0; i < days[0].customers.Count; i++)
-				{
-					Console.WriteLine(days[0].customers[i].name);
-				}
+					//how much do they want to buy?	
+					//} 
+
+
+
+
+					//complete transaction (remove $$$ from their wallet)
+
+					//create their recipie for the lemonade
+					//how many lemons/cup
+					//how much sugar/cup
+					//how many ice cubes
+					//price per cup
+
+					//begin day
+					//random customers purchase cups until the set time is over with
+					//price too high & weather affect demand
+
+					//display how many cups sold, how much money made/ day
+					//track how much made over the week?
 
 			}
-		
-
-			//new players get $20 to start
-
-			//set actual weather for the day
-
-
-			//display the weather for the day	
-
-
-			//player gets to buy inventory
-			//what do they want to buy?
-			//how much do they want to buy?
-			//complete transaction (remove $$$ from their wallet)
-
-			//create their recipie for the lemonade
-			//how many lemons/cup
-			//how much sugar/cup
-			//how many ice cubes
-			//price per cup
-
-			//begin day
-			//random customers purchase cups until the set time is over with
-			//price too high & weather affect demand
-
-			//display how many cups sold, how much money made/ day
-			//track how much made over the week?
-
-		}
 		private void SetGameMode()
 		{
 			bool gameModeCheck = false;
 			do
 			{
-				string numberOfPlayers = UserInterface.PlayerInput();
+				string numberOfPlayers = UserInterface.TakePlayerInput();
 				if (numberOfPlayers == "single player" || numberOfPlayers == "1")
 				{
 					UserInterface.DisplaySinglePlayerModeMessage();
+					playerOne = new Player();
 					gameModeCheck = true;
 				}
 				else if (numberOfPlayers == "two player" || numberOfPlayers== "2")
 				{
 					UserInterface.DisplayMultiplayerModeMessage();
-					SetPlayerType();
+					//SetPlayerType();
 					gameModeCheck = true;
 				}
 				else
@@ -93,13 +92,12 @@ namespace LemonadeStand_3DayStarter
 			}
 			while (gameModeCheck == false);
 		}
-		
-		private void SetPlayerType()
+/*		 private void SetPlayerType()
 		{
 			bool playerTypeCheck = false;
 			do
 			{
-				string playerType = UserInterface.PlayerInput();
+				string playerType = UserInterface.TakePlayerInput();
 		
 				if (playerType == "with the computer" || playerType == "1")
 				{
@@ -123,13 +121,13 @@ namespace LemonadeStand_3DayStarter
 
 			}
 			while (playerTypeCheck == false);
-		}
+		}*/
 		public bool CheckForNewGame()
 		{
 			bool newGameCheck = false;
 			do
 			{
-				string userInput = UserInterface.PlayerInput();
+				string userInput = UserInterface.TakePlayerInput();
 				switch (userInput)
 				{
 
