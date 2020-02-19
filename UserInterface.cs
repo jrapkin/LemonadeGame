@@ -65,7 +65,7 @@ namespace LemonadeStand_3DayStarter
 		}
 		public static void DisplayCurrentInventory (int numberOfLemons, int numberOfSugarCubes, int numberOfIceCubes, int numberOfCups)
 		{
-			Console.WriteLine($"You currently have {numberOfLemons} lemons.\nYou currently have {numberOfSugarCubes} sugar cubes.\nYou currently have {numberOfIceCubes} ice cubes.\nYou currently have {numberOfIceCubes} cups.");
+			Console.WriteLine($"You currently have {numberOfLemons} lemons.\nYou currently have {numberOfSugarCubes} sugar cubes.\nYou currently have {numberOfIceCubes} ice cubes.\nYou currently have {numberOfCups} cups.");
 		}
 		public static void StorePurchaseMessage()
 		{
@@ -93,9 +93,14 @@ namespace LemonadeStand_3DayStarter
 		}
 		public static void PromptUserForDesiredRecipe()
 		{
-			Console.WriteLine("What would you like to set your lemonade recipe to? This will affect the recipe of your pitcher. \nYou can set your price per cup after you set your recipe.");
+			Console.WriteLine("What would you like to set your lemonade recipe to? This will affect the recipe of your pitcher. \nYou can set your price per cup as well.");
 		}
 
+		public static void DisplayRecipeOptions()
+		{
+			Console.WriteLine("1: Lemons\n\n2: Sugar Cubes\n\n3:Ice Cubes\n\n4:Price Per Cup");
+
+		}
 
 		public static int PromptForNumberOfItemsInRecipe(string item)
 		{
@@ -131,6 +136,20 @@ namespace LemonadeStand_3DayStarter
 		{
 			Console.WriteLine("You don't have enough inventory to make pitchers. You sold out for the day. Please head back to the store to buy inventory!");
 		}
+		public static void DisplayNumberOfCupsLeft(int cupsLeftInPitcher)
+		{
+			Console.WriteLine($"You have {cupsLeftInPitcher} left in this pitcher.");
+		}
 
+		public static void DisplayCustomerBuys()
+		{
+			Console.WriteLine("A customer decided to buy your lemonade! Show me the money!");
+			Console.ReadLine();
+			Console.Clear();
+		}
+		public static void DisplayCustomerPass()
+		{
+			Console.WriteLine($"A customer decided not to buy your lemonade. Bummer!");
+		}
 	}
 }

@@ -21,6 +21,7 @@ namespace LemonadeStand_3DayStarter
             inventory = new Inventory();
             wallet = new Wallet();
             recipe = new Recipe();
+            pitcher = new Pitcher();
         }
 
         // member methods (CAN DO)
@@ -41,13 +42,8 @@ namespace LemonadeStand_3DayStarter
             {
                 recipe.amountOfIceCubes = UserInterface.PromptForNumberOfItemsInRecipe("ice cubes");
             }
-            else if (itemToAddToRecipe == "4" || itemToAddToRecipe == "cups")
-            {
-
-                
-
-            }
-            else if (itemToAddToRecipe == "5" || itemToAddToRecipe == "price per cup")
+           
+            else if (itemToAddToRecipe == "4" || itemToAddToRecipe == "price per cup")
             {
 
                 bool UserInputIsADouble = false;
@@ -68,13 +64,13 @@ namespace LemonadeStand_3DayStarter
         public bool CreatePitcher(Pitcher pitcher, Recipe playerRecipe)
         {
             //checks to see if they have enough inventory
-            if (inventory.lemons.Count >= recipe.amountOfLemons || inventory.sugarCubes.Count >= recipe.amountOfSugarCubes || inventory.iceCubes.Count >= recipe.amountOfIceCubes|| inventory.cups.Count >= pitcher.totalCupsPerPitcher)
+            if (inventory.lemons.Count >= recipe.amountOfLemons || inventory.sugarCubes.Count >= recipe.amountOfSugarCubes || inventory.iceCubes.Count >= recipe.amountOfIceCubes|| inventory.cups.Count >= pitcher.cupsInPitcher)
             {
                
                     inventory.RemoveItemsFromInventory(recipe.amountOfLemons, inventory.lemons);
                     inventory.RemoveItemsFromInventory(recipe.amountOfSugarCubes, inventory.sugarCubes);
                     inventory.RemoveItemsFromInventory(recipe.amountOfIceCubes, inventory.iceCubes);
-                    inventory.RemoveItemsFromInventory(pitcher.totalCupsPerPitcher, inventory.cups);
+                    inventory.RemoveItemsFromInventory(pitcher.cupsInPitcher, inventory.cups);
 
                 return true;
             }
@@ -84,6 +80,11 @@ namespace LemonadeStand_3DayStarter
                 
                 return false;
             }
+
+        }
+
+        public void PerformSale(Customer customer)
+        {
 
         }
     }

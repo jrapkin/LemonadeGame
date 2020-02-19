@@ -8,17 +8,18 @@ namespace LemonadeStand_3DayStarter
 {
 	public class Pitcher
 	{
-		public int playerCupsOfLemonade;
-		public int totalCupsPerPitcher;
+		public int cupsInPitcher;
 		public int pitcherOfLemonade;
 
-		public Pitcher(Player player, Recipe playerRecipe)
+
+		public Pitcher()
 		{
 			pitcherOfLemonade = 0;
-			totalCupsPerPitcher = 10;
-			playerCupsOfLemonade = pitcherOfLemonade * totalCupsPerPitcher;
+			cupsInPitcher = 10;
+		
 
 		}
+
 
 	}
 }

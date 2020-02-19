@@ -25,7 +25,7 @@ namespace LemonadeStand_3DayStarter
 
 		public bool ChanceToBuy(Recipe recipe, Random passedRandom)
 		{
-			if (recipe.pricePerCup <= .7 && passedRandom.NextDouble() <= .7)
+			if (recipe.pricePerCup <= .8 && passedRandom.NextDouble() <= .75)
 			{
 				return true;
 			}

@@ -13,7 +13,6 @@ namespace LemonadeStand_3DayStarter
 		Player playerTwo;
 		public Random random;
 		public List<Day> days;
-		Store theStore;
 
 
 		//Constructor
@@ -22,7 +21,7 @@ namespace LemonadeStand_3DayStarter
 			random = new Random();
 			UserInterface.WelcomeMessage();
 			days = new List<Day>() { new Day(random, "Monday"), new Day(random, "Tuesday"), new Day(random, "Wednsday"), new Day(random, "Thursday"), new Day(random, "Friday"), new Day(random, "Saturday"), new Day(random, "Sunday") };
-			theStore = new Store();
+
 
 		}
 		//Member Methods
@@ -37,36 +36,14 @@ namespace LemonadeStand_3DayStarter
 			/*for (int i = 0; i < days.Count; i++)
 			{*/
 			//display the weather for the day	
-			//UserInterface.DisplayWeather(days[i].theDay, days[i].weather.condition, days[i].weather.temperature);
-			//player gets to buy inventory
-			theStore.PlayerIsInTheStore(playerOne);
+			
 
-			//create their recipie for the lemonade
-			bool playerSettingRecipe = true;
-			UserInterface.PromptUserForDesiredRecipe();
-			do
+			for (int i = 0; i < days.Count; i++)
 			{
-				UserInterface.DisplayCurrentInventory(playerOne.inventory.lemons.Count, playerOne.inventory.sugarCubes.Count, playerOne.inventory.iceCubes.Count, playerOne.inventory.cups.Count);
-				UserInterface.DisplayItemList();			
-				//how many lemons/cup
-				playerOne.SetLemondadeRecipe(UserInterface.TakePlayerInput().ToLower());
-				UserInterface.DoYouWantToContinueToSetRecipe();
-				string input = UserInterface.TakePlayerInput().ToLower();
-				if (input =="no")
-				{
-					 playerSettingRecipe = false;
-				}
-				else if(input == "yes")
-				{
-					Console.Clear();
-					continue;
-				}
-				else
-				{ UserInterface.DisplayInvalidSelectionMessage();
-				}
-			} while (playerSettingRecipe);	
-
-
+				UserInterface.DisplayWeather(days[i].theDay, days[i].weather.condition, days[i].weather.temperature);
+				days[i].RunDay(playerOne, random);
+			}
+			
 					//begin day
 					//random customers purchase cups until the set time is over with
 					//price too high & weather affect demand
@@ -165,7 +142,6 @@ namespace LemonadeStand_3DayStarter
 			return newGameCheck;
 		}
 
-		
 		
 
 	}
