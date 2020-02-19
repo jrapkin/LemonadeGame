@@ -95,9 +95,20 @@ namespace LemonadeStand_3DayStarter
 		{
 			Console.WriteLine("What would you like to set your lemonade recipe to? This will affect the recipe of your pitcher. \nYou can set your price per cup after you set your recipe.");
 		}
-		public static void PromptForNumberOfItems(string item)
+		public static int PromptForNumberOfItemsInRecipe(string item)
 		{
-			Console.WriteLine($"How many {item} would you like to add to your recipe?");
+			bool userInputIsValid = false;
+			int itemQuantity = -1;
+
+			while (userInputIsValid == false || itemQuantity < 0)
+			{
+				Console.WriteLine($"How many {item} would you like to add to your recipe?");
+				Console.WriteLine("Please enter a positive integer (or 0 to cancel):");
+
+				userInputIsValid = Int32.TryParse(Console.ReadLine(), out itemQuantity);
+
+			}
+			return itemQuantity;
 		}
 
 		public static void DoYouWantToContinueToBuy()
@@ -108,6 +119,10 @@ namespace LemonadeStand_3DayStarter
 		{
 			Console.WriteLine("Do you want to continue setting your recipe?");
 
+		}
+		public static void AskForPricePerCup()
+		{
+			Console.WriteLine("How much would you like to charge per cup of lemonade");
 		}
 
 

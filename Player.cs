@@ -20,6 +20,7 @@ namespace LemonadeStand_3DayStarter
         {
             inventory = new Inventory();
             wallet = new Wallet();
+            recipe = new Recipe();
         }
 
         // member methods (CAN DO)
@@ -28,30 +29,29 @@ namespace LemonadeStand_3DayStarter
         public void SetLemondadeRecipe(string itemToAddToRecipe)
         {
             
+
             if (itemToAddToRecipe == "1" || itemToAddToRecipe == "lemons")
             {
-                UserInterface.PromptForNumberOfItems("lemons");
-
-                inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.lemons);
+                recipe.amountOfLemons = UserInterface.PromptForNumberOfItemsInRecipe("lemons");
             }
             else if (itemToAddToRecipe == "2" || itemToAddToRecipe == "sugar cubes")
             {
-                UserInterface.PromptForNumberOfItems("sugar cubes");
-
-                inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.sugarCubes);
-
+                recipe.amountOfSugarCubes = UserInterface.PromptForNumberOfItemsInRecipe("sugar cubes");
             }
             else if (itemToAddToRecipe == "3" || itemToAddToRecipe == "ice cubes")
             {
-                UserInterface.PromptForNumberOfItems("ice cubes");
-
-                inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.iceCubes);
+                recipe.amountOfIceCubes = UserInterface.PromptForNumberOfItemsInRecipe("ice cubes");
             }
             else if (itemToAddToRecipe == "4" || itemToAddToRecipe == "cups")
             {
-                UserInterface.PromptForNumberOfItems("cups");
-
-                inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.cups);
+                
+                UserInterface.AskForPricePerCup();
+                bool UserInputIsADouble = false;
+                while (UserInputIsADouble == false || recipe.pricePerCup < 0 )
+                {
+                    UserInputIsADouble = double.TryParse(UserInterface.TakePlayerInput(), out recipe.pricePerCup);
+                }
+                 
 
             }
             else
@@ -59,5 +59,14 @@ namespace LemonadeStand_3DayStarter
                 UserInterface.DisplayInvalidSelectionMessage();
             }
         }
+
+       /* public void CreatePitcherOfLemonade()
+        {
+            inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.lemons);
+            inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.sugarCubes);
+            inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.iceCubes);
+            inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.cups);
+
+        }*/
     }
 }
