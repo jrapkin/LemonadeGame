@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {
-	class Customer
+	public class Customer
 	{
 		private List<string> names;
 		public string name;
@@ -14,14 +14,28 @@ namespace LemonadeStand_3DayStarter
 		{
 			names = new List<string>() { "George", "Georgia", "Justin", "Steve", "David", "Mia", "Sara", "Anastacia", "Hayley", "Katelyn", "Danielle" };
 			SetCustomerName(passedRandom);
+			
 		}
 
-		public void SetCustomerName(Random passedRandom)
+		private void SetCustomerName(Random passedRandom)
 		{
 			int randomName = passedRandom.Next(0, names.Count);
 			name = names[randomName];
-			
+		}
+
+		public bool ChanceToBuy(Recipe recipe, Random passedRandom)
+		{
+			if (recipe.pricePerCup <= .7 && passedRandom.NextDouble() <= .7)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 
 		}
+
+
 	}
 }

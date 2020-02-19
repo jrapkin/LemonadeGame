@@ -25,6 +25,74 @@ namespace LemonadeStand_3DayStarter
 
         // member methods (CAN DO)
         
+        public void PlayerIsInTheStore(Player player)
+        {
+            UserInterface.StorePurchaseMessage();
+
+            bool playerWantsToBuy = true;
+
+            do
+            {
+                UserInterface.DisplayMoneyHeld(player.wallet.Money);
+                UserInterface.DisplayCurrentInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count);
+                UserInterface.DisplayItemList();
+                //is deciding what they want to buy and also how much they want and then performing the transaction
+                //figure out how to break this up
+                WhatPlayerWantsToBuy(player);
+                UserInterface.DoYouWantToContinueToBuy();
+                string playerBuyingItems = UserInterface.TakePlayerInput().ToLower();
+                if (playerBuyingItems == "no")
+                {
+                    Console.Clear();
+                    playerWantsToBuy = false;
+                }
+                else if (playerBuyingItems == "yes")
+                {
+                    Console.Clear();
+                    continue;
+                }
+                else
+                {
+                    Console.Clear();
+                    UserInterface.DisplayInvalidSelectionMessage();
+                }
+            } while (playerWantsToBuy);
+        }
+        private bool WhatPlayerWantsToBuy(Player player)
+        {
+            string userInput = UserInterface.TakePlayerInput().ToLower();
+            bool validInput = false;
+            //user picks item from list
+            while (validInput == false)
+            {
+
+                switch (userInput)
+                {
+                    case "1":
+                    case "lemons":
+                        SellLemons(player);
+                        return validInput = true;
+
+                    case "2":
+                    case "sugar cubes":
+                        SellSugarCubes(player);
+                        return validInput = true;
+                    case "3":
+                    case "ice cubes":
+                        SellIceCubes(player);
+                        return validInput = true;
+                    case "4":
+                    case "cups":
+                        SellCups(player);
+                        return validInput = true;
+
+                    default:
+                        UserInterface.DisplayInvalidSelectionMessage();
+                        return WhatPlayerWantsToBuy(player);
+                }
+            }
+            return validInput;
+        }
         public void SellLemons(Player player)
         {
             int lemonsToPurchase = UserInterface.GetNumberOfItems("lemons");

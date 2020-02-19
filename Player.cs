@@ -25,10 +25,9 @@ namespace LemonadeStand_3DayStarter
 
         // member methods (CAN DO)
 
-
         public void SetLemondadeRecipe(string itemToAddToRecipe)
         {
-            
+
 
             if (itemToAddToRecipe == "1" || itemToAddToRecipe == "lemons")
             {
@@ -44,14 +43,19 @@ namespace LemonadeStand_3DayStarter
             }
             else if (itemToAddToRecipe == "4" || itemToAddToRecipe == "cups")
             {
+
                 
-                UserInterface.AskForPricePerCup();
+
+            }
+            else if (itemToAddToRecipe == "5" || itemToAddToRecipe == "price per cup")
+            {
+
                 bool UserInputIsADouble = false;
-                while (UserInputIsADouble == false || recipe.pricePerCup < 0 )
+                while (UserInputIsADouble == false || recipe.pricePerCup < 0)
                 {
+                    UserInterface.AskForPricePerCup();
                     UserInputIsADouble = double.TryParse(UserInterface.TakePlayerInput(), out recipe.pricePerCup);
                 }
-                 
 
             }
             else
@@ -60,13 +64,27 @@ namespace LemonadeStand_3DayStarter
             }
         }
 
-       /* public void CreatePitcherOfLemonade()
+        //check to see if they have enough inventory, if not send them to store
+        public bool CreatePitcher(Pitcher pitcher, Recipe playerRecipe)
         {
-            inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.lemons);
-            inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.sugarCubes);
-            inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.iceCubes);
-            inventory.RemoveItemsFromInventory(Convert.ToInt32(UserInterface.TakePlayerInput()), inventory.cups);
+            //checks to see if they have enough inventory
+            if (inventory.lemons.Count >= recipe.amountOfLemons || inventory.sugarCubes.Count >= recipe.amountOfSugarCubes || inventory.iceCubes.Count >= recipe.amountOfIceCubes|| inventory.cups.Count >= pitcher.totalCupsPerPitcher)
+            {
+               
+                    inventory.RemoveItemsFromInventory(recipe.amountOfLemons, inventory.lemons);
+                    inventory.RemoveItemsFromInventory(recipe.amountOfSugarCubes, inventory.sugarCubes);
+                    inventory.RemoveItemsFromInventory(recipe.amountOfIceCubes, inventory.iceCubes);
+                    inventory.RemoveItemsFromInventory(pitcher.totalCupsPerPitcher, inventory.cups);
 
-        }*/
+                return true;
+            }
+            // if not tell them they don't have enough
+            else
+            {
+                
+                return false;
+            }
+
+        }
     }
 }

@@ -33,42 +33,13 @@ namespace LemonadeStand_3DayStarter
 			//welcome user to the game
 			UserInterface.DisplayGameModeOptions();
 			SetGameMode();
-			 
+
 			/*for (int i = 0; i < days.Count; i++)
 			{*/
-			    //display the weather for the day	
-				//UserInterface.DisplayWeather(days[i].theDay, days[i].weather.condition, days[i].weather.temperature);
-				//player gets to buy inventory
-				UserInterface.StorePurchaseMessage();
-
-			bool playerWantsToBuy = true;
-			
-			do
-			{
-				UserInterface.DisplayMoneyHeld(playerOne.wallet.Money);
-				UserInterface.DisplayCurrentInventory(playerOne.inventory.lemons.Count, playerOne.inventory.sugarCubes.Count, playerOne.inventory.iceCubes.Count, playerOne.inventory.cups.Count);
-				UserInterface.DisplayItemList();
-				//is deciding what they want to buy and also how much they want and then performing the transaction
-				//figure out how to break this up
-				WhatPlayerWantsToBuy();
-				UserInterface.DoYouWantToContinueToBuy();
-				string playerBuyingItems = UserInterface.TakePlayerInput().ToLower();
-				if (playerBuyingItems == "no") 
-				{
-					Console.Clear();
-					playerWantsToBuy = false;
-				}
-				else if (playerBuyingItems == "yes")
-				{
-					Console.Clear();
-					continue;
-				}
-				else
-				{
-					Console.Clear();
-					UserInterface.DisplayInvalidSelectionMessage();
-				}
-			} while (playerWantsToBuy);
+			//display the weather for the day	
+			//UserInterface.DisplayWeather(days[i].theDay, days[i].weather.condition, days[i].weather.temperature);
+			//player gets to buy inventory
+			theStore.PlayerIsInTheStore(playerOne);
 
 			//create their recipie for the lemonade
 			bool playerSettingRecipe = true;
@@ -94,10 +65,7 @@ namespace LemonadeStand_3DayStarter
 				{ UserInterface.DisplayInvalidSelectionMessage();
 				}
 			} while (playerSettingRecipe);	
-		
-					//how much sugar/cup
-					//how many ice cubes
-					//price per cup
+
 
 					//begin day
 					//random customers purchase cups until the set time is over with
@@ -106,7 +74,7 @@ namespace LemonadeStand_3DayStarter
 					//display how many cups sold, how much money made/ day
 					//track how much made over the week?
 
-			}
+		}
 		private void SetGameMode()
 		{
 			
@@ -196,41 +164,9 @@ namespace LemonadeStand_3DayStarter
 			while (newGameCheck == false);
 			return newGameCheck;
 		}
-		private bool WhatPlayerWantsToBuy()
-		{
-			string userInput = UserInterface.TakePlayerInput().ToLower();
-			bool validInput = false;
-			//user picks item from list
-			while (validInput == false) 
-			{
 
-				switch (userInput)
-				{
-					case "1":
-					case "lemons":
-						theStore.SellLemons(playerOne);
-						return validInput = true;
-
-					case "2":
-					case "sugar cubes":
-						theStore.SellSugarCubes(playerOne);
-						return validInput = true;
-					case "3":
-					case "ice cubes":
-						theStore.SellIceCubes(playerOne);
-						return validInput = true;
-					case "4":
-					case "cups":
-						theStore.SellCups(playerOne);
-						return validInput = true;
-
-					default:
-						UserInterface.DisplayInvalidSelectionMessage();
-						return WhatPlayerWantsToBuy();
-				}
-			}
-			return validInput;
-		}
+		
+		
 
 	}
 }
