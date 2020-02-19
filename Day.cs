@@ -33,14 +33,29 @@ namespace LemonadeStand_3DayStarter
 		{
 			theStore.PlayerIsInTheStore(player);
 			DecideRecipeForTheDay(player);
-			bool playerHasInventory = true;
 			//start the day
-			if (playerHasInventory == true)
+			if (player.CanCreatePitcher())
 			{
-				player.CreatePitcher(player.pitcher, player.recipe);
+
 				for (int i = 0; i < customers.Count; i++)
 				{
-					SellLemonade(player, customers[i], random);
+
+					if (player.pitcher.cupsInPitcher > 0)
+					{
+						SellLemonade(player, customers[i], random);
+					}
+					else
+					{
+						if (player.CanCreatePitcher())
+						{
+							SellLemonade(player, customers[i], random);
+						}
+						else
+						{
+							UserInterface.SoldOut();
+							break;
+						}
+					}
 				}
 			}
 			else
@@ -62,7 +77,7 @@ namespace LemonadeStand_3DayStarter
 			}
 			else
 			{
-			
+				UserInterface.DisplayCustomerPass();
 				UserInterface.DisplayNumberOfCupsLeft(player.pitcher.cupsInPitcher);
 				
 			}

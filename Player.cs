@@ -42,7 +42,7 @@ namespace LemonadeStand_3DayStarter
             {
                 recipe.amountOfIceCubes = UserInterface.PromptForNumberOfItemsInRecipe("ice cubes");
             }
-           
+
             else if (itemToAddToRecipe == "4" || itemToAddToRecipe == "price per cup")
             {
 
@@ -61,31 +61,27 @@ namespace LemonadeStand_3DayStarter
         }
 
         //check to see if they have enough inventory, if not send them to store
-        public bool CreatePitcher(Pitcher pitcher, Recipe playerRecipe)
+        public bool CanCreatePitcher()
         {
             //checks to see if they have enough inventory
-            if (inventory.lemons.Count >= recipe.amountOfLemons || inventory.sugarCubes.Count >= recipe.amountOfSugarCubes || inventory.iceCubes.Count >= recipe.amountOfIceCubes|| inventory.cups.Count >= pitcher.cupsInPitcher)
+            if (inventory.lemons.Count >= recipe.amountOfLemons || inventory.sugarCubes.Count >= recipe.amountOfSugarCubes || inventory.iceCubes.Count >= recipe.amountOfIceCubes || inventory.cups.Count >= pitcher.cupsInPitcher)
             {
-               
-                    inventory.RemoveItemsFromInventory(recipe.amountOfLemons, inventory.lemons);
-                    inventory.RemoveItemsFromInventory(recipe.amountOfSugarCubes, inventory.sugarCubes);
-                    inventory.RemoveItemsFromInventory(recipe.amountOfIceCubes, inventory.iceCubes);
-                    inventory.RemoveItemsFromInventory(pitcher.cupsInPitcher, inventory.cups);
+
+                inventory.RemoveItemsFromInventory(recipe.amountOfLemons, inventory.lemons);
+                inventory.RemoveItemsFromInventory(recipe.amountOfSugarCubes, inventory.sugarCubes);
+                inventory.RemoveItemsFromInventory(recipe.amountOfIceCubes, inventory.iceCubes);
+                inventory.RemoveItemsFromInventory(pitcher.cupsInPitcher, inventory.cups);
 
                 return true;
             }
             // if not tell them they don't have enough
             else
             {
-                
+
                 return false;
             }
 
         }
-
-        public void PerformSale(Customer customer)
-        {
-
-        }
     }
+
 }

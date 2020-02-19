@@ -14,7 +14,9 @@ namespace LemonadeStand_3DayStarter
 
 			Console.WriteLine("Welcome to Lemonade Stand\n \n");
 			Console.WriteLine("Do you have the business chops to run a lemonade Stand?");
-			Console.WriteLine("Do you want to start a new game and be an entrepenure?");
+			Console.ReadLine();
+			Console.Clear();
+			Console.WriteLine("Do you want to start a new game and be an entrepenure?\n");
 			Console.WriteLine("You can type new game, or press 1 to begin. Press 2, or say no to quit the game");
 
 		}
@@ -37,6 +39,8 @@ namespace LemonadeStand_3DayStarter
 		public static void DisplaySinglePlayerModeMessage()
 		{
 			Console.WriteLine("You have selected Single Player Mode.");
+			Console.ReadLine();
+			Console.Clear();
 		}
 		public static void DisplayMultiplayerModeMessage()
 		{
@@ -138,7 +142,7 @@ namespace LemonadeStand_3DayStarter
 		}
 		public static void DisplayNumberOfCupsLeft(int cupsLeftInPitcher)
 		{
-			Console.WriteLine($"You have {cupsLeftInPitcher} left in this pitcher.");
+			Console.WriteLine($"You have {cupsLeftInPitcher} cups left in this pitcher.");
 		}
 
 		public static void DisplayCustomerBuys()

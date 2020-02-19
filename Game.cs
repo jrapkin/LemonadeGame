@@ -33,11 +33,6 @@ namespace LemonadeStand_3DayStarter
 			UserInterface.DisplayGameModeOptions();
 			SetGameMode();
 
-			/*for (int i = 0; i < days.Count; i++)
-			{*/
-			//display the weather for the day	
-			
-
 			for (int i = 0; i < days.Count; i++)
 			{
 				UserInterface.DisplayWeather(days[i].theDay, days[i].weather.condition, days[i].weather.temperature);
