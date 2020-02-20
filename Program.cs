@@ -14,13 +14,6 @@ namespace LemonadeStand_3DayStarter
             game.RunGame();
             
 
-            Console.ReadLine();
-/*            bool newGame = game.CheckForNewGame();
-            if (newGame == true)
-            {
-                game.RunGame();
-            }*/
-
 
         }
     }

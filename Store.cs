@@ -8,13 +8,13 @@ namespace LemonadeStand_3DayStarter
 {
     class Store
     {
-        // member variables (HAS A)
+
         private double pricePerLemon;
         private double pricePerSugarCube;
         private double pricePerIceCube;
         private double pricePerCup;
 
-        // constructor (SPAWNER)
+
         public Store()
         {
             pricePerLemon = .35;
@@ -23,7 +23,6 @@ namespace LemonadeStand_3DayStarter
             pricePerCup = .2;
         }
 
-        // member methods (CAN DO)
 
         public void PlayerIsInTheStore(Player player)
         {
@@ -37,14 +36,11 @@ namespace LemonadeStand_3DayStarter
                 UserInterface.DisplayStorePrices(pricePerLemon, pricePerSugarCube, pricePerIceCube, pricePerCup);
                 UserInterface.DisplayCurrentInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count);
                 UserInterface.DisplayItemList();
-                //is deciding what they want to buy and also how much they want and then performing the transaction
-                //figure out how to break this up
                 WhatPlayerWantsToBuy(player);
                 UserInterface.DoYouWantToContinueToBuy();
                 string playerBuyingItems = UserInterface.TakePlayerInput().ToLower();
                 if (playerBuyingItems == "no")
                 {
-                    Console.Clear();
                     playerWantsToBuy = false;
                 }
                 else if (playerBuyingItems == "yes")
@@ -53,7 +49,6 @@ namespace LemonadeStand_3DayStarter
                 }
                 else
                 {
-                    Console.Clear();
                     UserInterface.DisplayInvalidSelectionMessage();
                 }
             } while (playerWantsToBuy);
@@ -61,34 +56,30 @@ namespace LemonadeStand_3DayStarter
 
         private bool WhatPlayerWantsToBuy(Player player)
         {
-            string userInput = UserInterface.TakePlayerInput().ToLower();
             bool validInput = false;
             //user picks item from list
             while (validInput == false)
             {
 
-                switch (userInput)
+                switch (UserInterface.ValidateInput())
                 {
-                    case "1":
-                    case "lemons":
+                    case 1:
+                    
                         SellLemons(player);
                         return validInput = true;
 
-                    case "2":
-                    case "sugar cubes":
+                    case 2:
                         SellSugarCubes(player);
                         return validInput = true;
-                    case "3":
-                    case "ice cubes":
+                    case 3:
+                    
                         SellIceCubes(player);
                         return validInput = true;
-                    case "4":
-                    case "cups":
+                    case 4:
                         SellCups(player);
                         return validInput = true;
 
-                    case "0":
-                    case "exit":
+                    case 0:
                         return validInput = true;
 
                     default:

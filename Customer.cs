@@ -17,6 +17,7 @@ namespace LemonadeStand_3DayStarter
 			
 		}
 
+		//This addresses the single responsibility principle. SetCustomerName has one purpose which is to set the customer name based on a list of string names.
 		private void SetCustomerName(Random passedRandom)
 		{
 			int randomName = passedRandom.Next(0, names.Count);

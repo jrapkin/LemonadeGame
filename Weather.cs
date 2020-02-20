@@ -8,7 +8,6 @@ namespace LemonadeStand_3DayStarter
 {
 	class Weather
 	{
-		//member variables
 		public string condition;
 		public int temperature;
 		private List<string> weatherConditions;
@@ -21,8 +20,7 @@ namespace LemonadeStand_3DayStarter
 			temperature = GenerateRandomTemperature(random);
 		}
 
-		//methods
-		private void GenerateRandomCondition(Random passedRandom)
+		private void GenerateRandomCondition(Random passedRandom) //This method covers the Open/Closed principal because you could add as many conditions as you'd like to the list and it would still pick from your list of conditions since the end of the range is based on the count of the weather conditions list.
 		{
 			int generatedCondition = passedRandom.Next(0, weatherConditions.Count);
 			condition = weatherConditions[generatedCondition];

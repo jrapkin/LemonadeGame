@@ -8,14 +8,12 @@ namespace LemonadeStand_3DayStarter
 {
 	class Day
 	{
-		//member variables
 		public List<Customer> customers;
 		public Weather weather;
 		public string theDay;
 		public Store theStore;
 
 
-		//constructor
 		public Day(Random random, string day)
 		{
 			weather = new Weather(random);
@@ -23,11 +21,9 @@ namespace LemonadeStand_3DayStarter
 			customers = new List<Customer>();
 			theStore = new Store();
 			CreateListOfCustomers(random, DetermineNumberOfCustomers(random));
-			//UserInterface.DisplayWeather(theDay, weather.condition, weather.temperature);
 			
 		}
 
-		//Member method 
 
 		public void RunDay(Player player, Random random)
 		{
@@ -53,9 +49,12 @@ namespace LemonadeStand_3DayStarter
 						else
 						{
 							UserInterface.SoldOut();
+							player.pitcher.cupsInPitcher = 10;
+							
 							break;
 						}
 					}
+
 				}
 			}
 			else
@@ -71,15 +70,16 @@ namespace LemonadeStand_3DayStarter
 			{
 				player.wallet.AddMoneyToWallet(player.recipe.pricePerCup);
 				player.pitcher.cupsInPitcher--;
-				UserInterface.DisplayCustomerBuys();
+				player.totalDailySales++;
+				UserInterface.DisplayCustomerBuys(customer.name);
 				UserInterface.DisplayMoneyHeld(player.wallet.Money);
 				UserInterface.DisplayNumberOfCupsLeft(player.pitcher.cupsInPitcher);
+
 			}
 			else
 			{
-				UserInterface.DisplayCustomerPass();
+				UserInterface.DisplayCustomerPass(customer.name);
 				UserInterface.DisplayNumberOfCupsLeft(player.pitcher.cupsInPitcher);
-				player.pitcher.cupsInPitcher = 10;
 			}
 
 		}
@@ -125,8 +125,8 @@ namespace LemonadeStand_3DayStarter
 			do
 			{
 				UserInterface.DisplayCurrentInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count);
+				UserInterface.DisplayCurrentRecipe(player.recipe.amountOfLemons, player.recipe.amountOfSugarCubes, player.recipe.amountOfIceCubes, player.recipe.pricePerCup);
 				UserInterface.DisplayRecipeOptions();
-				//how many lemons/cup
 				player.SetLemondadeRecipe(UserInterface.TakePlayerInput().ToLower());
 				UserInterface.DoYouWantToContinueToSetRecipe();
 				string input = UserInterface.TakePlayerInput().ToLower();
@@ -148,6 +148,3 @@ namespace LemonadeStand_3DayStarter
 
 	}
 }
-//sell lemonade
-//customer chance to buy
-//if true, add money to wallet, remove cup from pitcher

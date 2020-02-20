@@ -8,15 +8,13 @@ namespace LemonadeStand_3DayStarter
 {
     public abstract class Item
     {
-        // member variables (HAS A)
+        //the item class addresses the "L" in solid (Liskov substitution principle) as it is the parent class to Lemon, IceCube, Lemon etc. This allows all of the child classes to inherit the variables of this class and the associated parent (Item) and in this case all of the child classes inherit a "name" variable.
         public string name;
 
-        // constructor (SPAWNER)
         static Item()
         {
-            
+
         }
 
-        // member methods (CAN DO)
     }
 }

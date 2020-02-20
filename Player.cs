@@ -8,14 +8,14 @@ namespace LemonadeStand_3DayStarter
 {
     public class Player
     {
-        // member variables (HAS A)
         public Inventory inventory;
         public Wallet wallet;
         public string name;
         public Recipe recipe;
         public Pitcher pitcher;
+        public int totalDailySales;
+        
 
-        // constructor (SPAWNER)
         public Player()
         {
             inventory = new Inventory();
@@ -24,7 +24,6 @@ namespace LemonadeStand_3DayStarter
             pitcher = new Pitcher();
         }
 
-        // member methods (CAN DO)
 
         public void SetLemondadeRecipe(string itemToAddToRecipe)
         {
@@ -61,11 +60,9 @@ namespace LemonadeStand_3DayStarter
             }
         }
 
-        //check to see if they have enough inventory, if not send them to store
         public bool CanCreatePitcher()
         {
-            //checks to see if they have enough inventory
-            if (inventory.lemons.Count > recipe.amountOfLemons && inventory.sugarCubes.Count > recipe.amountOfSugarCubes && inventory.iceCubes.Count > recipe.amountOfIceCubes && inventory.cups.Count > pitcher.cupsInPitcher)
+            if (inventory.lemons.Count >= recipe.amountOfLemons && inventory.sugarCubes.Count >= recipe.amountOfSugarCubes && inventory.iceCubes.Count >= recipe.amountOfIceCubes && inventory.cups.Count >= pitcher.cupsInPitcher)
             {
 
                 inventory.RemoveItemsFromInventory(recipe.amountOfLemons, inventory.lemons);
@@ -75,7 +72,6 @@ namespace LemonadeStand_3DayStarter
 
                 return true;
             }
-            // if not tell them they don't have enough
             else
             {
 

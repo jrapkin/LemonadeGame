@@ -8,7 +8,7 @@ namespace LemonadeStand_3DayStarter
 {
 	static class UserInterface
 	{
-		//game related messages and functions
+		//The entire user interface is basically
 		public static void WelcomeMessage()
 		{
 
@@ -25,7 +25,7 @@ namespace LemonadeStand_3DayStarter
 		{
 			Console.WriteLine("Would you like to start a new game? Press 1 to start a new game. \n Press 2 to quit the game");
 		}
-		public static void QuitGame()
+		public static void QuitGameMessage()
 		{
 			Console.WriteLine("It's been fun!\n Play again soon.");
 		}
@@ -38,7 +38,7 @@ namespace LemonadeStand_3DayStarter
 		}
 		public static void DisplaySinglePlayerModeMessage()
 		{
-			Console.WriteLine("You have selected Single Player Mode.");
+			Console.WriteLine("You are playing Single Player Mode.");
 			Console.ReadLine();
 			Console.Clear();
 		}
@@ -61,7 +61,6 @@ namespace LemonadeStand_3DayStarter
 		{
 			Console.WriteLine($"Today is {day}. Today it will be {temperatureToDisplay} degrees and {condition}.");
 		}
-		//player related messages
 		public static void DisplayMoneyHeld(double playerMoney)
 		{
 			
@@ -75,6 +74,16 @@ namespace LemonadeStand_3DayStarter
 			Console.WriteLine($" You currently have {numberOfSugarCubes} sugar cubes.     ");
 			Console.WriteLine($" You currently have {numberOfIceCubes} ice cubes.          ");
 			Console.WriteLine($" You currently have {numberOfCups} cups.                  ");
+			Console.WriteLine(" ----------------------------------------------------------- ");
+		}
+		public static void DisplayCurrentRecipe(int numberOfLemons, int numberOfSugarCubes, int numberOfIceCubes, double pricePerCup)
+		{
+
+			Console.WriteLine(" ----------------------------------------------------------- ");
+			Console.WriteLine($" You currently have {numberOfLemons} lemons in your recipe.              ");
+			Console.WriteLine($" You currently have {numberOfSugarCubes} sugar cubes in your recipe.     ");
+			Console.WriteLine($" You currently have {numberOfIceCubes} ice cubes in your recipe.          ");
+			Console.WriteLine($" You are currently charging {pricePerCup} per cup.                  ");
 			Console.WriteLine(" ----------------------------------------------------------- ");
 		}
 		public static void StorePurchaseMessage()
@@ -91,7 +100,7 @@ namespace LemonadeStand_3DayStarter
 			Console.WriteLine("Enter 0 to exit");
 			Console.WriteLine("---------------------------------------------------------- ");
 		}
-			public static void DisplayItemList()
+		public static void DisplayItemList()
 		{
 			Console.WriteLine(" ------------------------------ ");
 			Console.WriteLine("| 1: Lemons                    |");
@@ -164,22 +173,42 @@ namespace LemonadeStand_3DayStarter
 
 		public static void SoldOut()
 		{
-			Console.WriteLine("You don't have enough inventory to make pitchers. You sold out for the day. Please head back to the store to buy inventory!");
+			Console.WriteLine("You don't have enough inventory to make pitchers. You sold out for the day. Please head back to the store to buy inventory, and try your luck again tomorrow.");
 		}
 		public static void DisplayNumberOfCupsLeft(int cupsLeftInPitcher)
 		{
 			Console.WriteLine($"You have {cupsLeftInPitcher} cups left in this pitcher.");
 		}
 
-		public static void DisplayCustomerBuys()
+		public static void DisplayCustomerBuys(string customerName)
 		{
-			Console.WriteLine("A customer decided to buy your lemonade! Show me the money!");
-			Console.ReadLine();
-			Console.Clear();
+			Console.WriteLine($"{customerName} decided to buy your lemonade! Show me the money!");
 		}
-		public static void DisplayCustomerPass()
+		public static void DisplayCustomerPass(string customerName)
 		{
-			Console.WriteLine($"A customer decided not to buy your lemonade. Bummer!");
+			Console.WriteLine($"{customerName} decided not to buy your lemonade. Bummer!");
+		}
+		public static void AnnounceEndOfDay()
+		{
+			Console.WriteLine("The day has ended! See how you do tomorrow.");
+
+		}
+		public static void DisplayDailySales(int dailySales)
+		{
+			Console.WriteLine($"You made {dailySales} sales today.");
+		}
+
+		public static int ValidateInput()
+		{
+			bool inputIsValid = false;
+			int userInput = 0;
+
+			while (!inputIsValid )
+			{
+				
+				inputIsValid = Int32.TryParse(TakePlayerInput(), out userInput);
+			}
+			return userInput;
 		}
 	}
 }
