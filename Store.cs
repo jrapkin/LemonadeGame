@@ -24,7 +24,7 @@ namespace LemonadeStand_3DayStarter
         }
 
         // member methods (CAN DO)
-        
+
         public void PlayerIsInTheStore(Player player)
         {
             UserInterface.StorePurchaseMessage();
@@ -34,6 +34,7 @@ namespace LemonadeStand_3DayStarter
             do
             {
                 UserInterface.DisplayMoneyHeld(player.wallet.Money);
+                UserInterface.DisplayStorePrices(pricePerLemon, pricePerSugarCube, pricePerIceCube, pricePerCup);
                 UserInterface.DisplayCurrentInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count);
                 UserInterface.DisplayItemList();
                 //is deciding what they want to buy and also how much they want and then performing the transaction
@@ -48,7 +49,6 @@ namespace LemonadeStand_3DayStarter
                 }
                 else if (playerBuyingItems == "yes")
                 {
-                    Console.Clear();
                     continue;
                 }
                 else
@@ -58,6 +58,7 @@ namespace LemonadeStand_3DayStarter
                 }
             } while (playerWantsToBuy);
         }
+
         private bool WhatPlayerWantsToBuy(Player player)
         {
             string userInput = UserInterface.TakePlayerInput().ToLower();
@@ -86,6 +87,10 @@ namespace LemonadeStand_3DayStarter
                         SellCups(player);
                         return validInput = true;
 
+                    case "0":
+                    case "exit":
+                        return validInput = true;
+
                     default:
                         UserInterface.DisplayInvalidSelectionMessage();
                         return WhatPlayerWantsToBuy(player);
@@ -93,6 +98,8 @@ namespace LemonadeStand_3DayStarter
             }
             return validInput;
         }
+
+        
         public void SellLemons(Player player)
         {
             int lemonsToPurchase = UserInterface.GetNumberOfItems("lemons");

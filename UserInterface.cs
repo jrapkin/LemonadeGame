@@ -12,12 +12,12 @@ namespace LemonadeStand_3DayStarter
 		public static void WelcomeMessage()
 		{
 
-			Console.WriteLine("Welcome to Lemonade Stand\n \n");
-			Console.WriteLine("Do you have the business chops to run a lemonade Stand?");
+			Console.WriteLine("                                 Welcome to Lemonade Stand\n \n");
+			Console.WriteLine("                     Do you have the business chops to run a lemonade Stand?");
 			Console.ReadLine();
 			Console.Clear();
-			Console.WriteLine("Do you want to start a new game and be an entrepenure?\n");
-			Console.WriteLine("You can type new game, or press 1 to begin. Press 2, or say no to quit the game");
+			Console.WriteLine("                    Do you want to start a new game and be an entrepenure?\n");
+			Console.WriteLine("            You can type new game, or press 1 to begin. Press 2, or say no to quit the game");
 
 		}
 
@@ -65,20 +65,41 @@ namespace LemonadeStand_3DayStarter
 		public static void DisplayMoneyHeld(double playerMoney)
 		{
 			
-			Console.WriteLine($"You currently have ${playerMoney} in your wallet.");
+			Console.WriteLine($"You currently have ${playerMoney} in your wallet.\n");
 		}
 		public static void DisplayCurrentInventory (int numberOfLemons, int numberOfSugarCubes, int numberOfIceCubes, int numberOfCups)
 		{
-			Console.WriteLine($"You currently have {numberOfLemons} lemons.\nYou currently have {numberOfSugarCubes} sugar cubes.\nYou currently have {numberOfIceCubes} ice cubes.\nYou currently have {numberOfCups} cups.");
+		
+			Console.WriteLine(" ----------------------------------------------------------- ");
+			Console.WriteLine($" You currently have {numberOfLemons} lemons.              ");
+			Console.WriteLine($" You currently have {numberOfSugarCubes} sugar cubes.     ");
+			Console.WriteLine($" You currently have {numberOfIceCubes} ice cubes.          ");
+			Console.WriteLine($" You currently have {numberOfCups} cups.                  ");
+			Console.WriteLine(" ----------------------------------------------------------- ");
 		}
 		public static void StorePurchaseMessage()
 		{
-			Console.WriteLine("Welcome to the store. You can buy anything you'd like... as long as you can show me the money! \nWhat items would you like to buy?\n");
+			Console.WriteLine("Welcome to the store. You can buy anything you'd like... as long as you can show me the money! \n\nWhat items would you like to buy?\n");
 		}
-		public static void DisplayItemList()
+		public static void DisplayStorePrices(double priceOfLemons, double priceOfSugarCubes, double priceOfIceCubes, double priceOfCups)
 		{
-			
-			Console.WriteLine("1: Lemons\n\n2: Sugar Cubes\n\n3:Ice Cubes\n\n4:Cups");
+			Console.WriteLine("---------------------------------------------------------- ");
+			Console.WriteLine($"Lemons are currently {priceOfLemons} cents.");
+			Console.WriteLine($"Sugar Cubes are currently {priceOfSugarCubes} cents.");
+			Console.WriteLine($"Ice Cubes are currently {priceOfIceCubes} cents.");
+			Console.WriteLine($"Cups are currently {priceOfCups} cents.");
+			Console.WriteLine("Enter 0 to exit");
+			Console.WriteLine("---------------------------------------------------------- ");
+		}
+			public static void DisplayItemList()
+		{
+			Console.WriteLine(" ------------------------------ ");
+			Console.WriteLine("| 1: Lemons                    |");
+			Console.WriteLine("| 2: Sugar Cubes               |");
+			Console.WriteLine("| 3:Ice Cubes                  |");
+			Console.WriteLine("| 4:Cups                       |");
+			Console.WriteLine("| Enter 0 to exit              |");
+			Console.WriteLine(" ------------------------------ ");
 		}
 		public static int GetNumberOfItems(string itemsToGet)
 		{
@@ -102,7 +123,12 @@ namespace LemonadeStand_3DayStarter
 
 		public static void DisplayRecipeOptions()
 		{
-			Console.WriteLine("1: Lemons\n\n2: Sugar Cubes\n\n3:Ice Cubes\n\n4:Price Per Cup");
+			Console.WriteLine(" ------------------------------ ");
+			Console.WriteLine("| 1: Lemons                    |");
+			Console.WriteLine("| 2: Sugar Cubes               |");
+			Console.WriteLine("| 3:Ice Cubes                  |");
+			Console.WriteLine("| 4:Price Per Cup              |");
+			Console.WriteLine(" ------------------------------ ");
 
 		}
 

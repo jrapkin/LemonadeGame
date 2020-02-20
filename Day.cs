@@ -79,7 +79,7 @@ namespace LemonadeStand_3DayStarter
 			{
 				UserInterface.DisplayCustomerPass();
 				UserInterface.DisplayNumberOfCupsLeft(player.pitcher.cupsInPitcher);
-				
+				player.pitcher.cupsInPitcher = 10;
 			}
 
 		}

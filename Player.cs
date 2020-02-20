@@ -54,6 +54,7 @@ namespace LemonadeStand_3DayStarter
                 }
 
             }
+
             else
             {
                 UserInterface.DisplayInvalidSelectionMessage();
@@ -64,7 +65,7 @@ namespace LemonadeStand_3DayStarter
         public bool CanCreatePitcher()
         {
             //checks to see if they have enough inventory
-            if (inventory.lemons.Count >= recipe.amountOfLemons || inventory.sugarCubes.Count >= recipe.amountOfSugarCubes || inventory.iceCubes.Count >= recipe.amountOfIceCubes || inventory.cups.Count >= pitcher.cupsInPitcher)
+            if (inventory.lemons.Count > recipe.amountOfLemons && inventory.sugarCubes.Count > recipe.amountOfSugarCubes && inventory.iceCubes.Count > recipe.amountOfIceCubes && inventory.cups.Count > pitcher.cupsInPitcher)
             {
 
                 inventory.RemoveItemsFromInventory(recipe.amountOfLemons, inventory.lemons);
